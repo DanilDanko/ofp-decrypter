@@ -28,11 +28,12 @@ jobs:
 
       - name: Download OFP Firmware
         run: |
-          aria2c -c -s16 -x16 "$OFP_LINK" 2>/dev/null || wget -q --show-progress "$OFP_LINK"
+          aria2c -c -s16 -x16 --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64)" "$OFP_LINK" 2>/dev/null || wget -q --show-progress --user-agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64)" "$OFP_LINK"
           OFPFILE=${OFP_LINK##*/}
           echo "OFP_FILE=${OFPFILE}" >> ${GITHUB_ENV}
           OFPNAME=${OFPFILE%.*}
           echo "OFP_NAME=${OFPNAME}" >> ${GITHUB_ENV}
+
 
       - name: Prepare Decrypter and Decrypt OFP
         run: |
